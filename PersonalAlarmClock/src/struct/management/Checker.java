@@ -8,14 +8,13 @@ import struct.alarm.RecurringAlarm;
 
 import constants.ConstantVariables;
 
-
-public class AlarmChecker implements Runnable {
+public class Checker implements Runnable {
 	private List<AtomicAlarm> atomicAlarms;
 	private List<RecurringAlarm> recurringAlarms;
 	private boolean validCheck;
 	private int timeOfDay;
 	
-	public AlarmChecker(List<AtomicAlarm> atomicAlarms, List<RecurringAlarm> recurringAlarms) {
+	public Checker(List<AtomicAlarm> atomicAlarms, List<RecurringAlarm> recurringAlarms) {
 		this.atomicAlarms = atomicAlarms;
 		this.recurringAlarms = recurringAlarms;
 		this.validCheck = true;
@@ -39,17 +38,23 @@ public class AlarmChecker implements Runnable {
 	}
 	
 	private void checkAtomicAlarms() {
-		for(AtomicAlarm aa :this.atomicAlarms) {
-			if(aa.getFireTime() > this.timeOfDay) {
-				
+		for(AtomicAlarm aa : this.atomicAlarms) {
+			if(aa.isAlive()) {
+				if(aa.getFireTime() < this.timeOfDay) {
+					System.out.println("alarm on");
+					//new thread alarm
+				}				
 			}
 		}
 	}
 	
 	private void checkRecurringAlarms() {
 		for(RecurringAlarm ra :this.recurringAlarms) {
-			if(ra.getFireTime() > this.timeOfDay) {
-				//fire aa
+			if(ra.isAlive()) {
+				if(ra.getFireTime() < this.timeOfDay) {
+					System.out.println("alarm on");
+					//new thread alarm
+				}
 			}
 		}
 	}

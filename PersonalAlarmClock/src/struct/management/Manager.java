@@ -7,16 +7,16 @@ import java.util.List;
 import struct.alarm.AtomicAlarm;
 import struct.alarm.RecurringAlarm;
 
-public class AlarmManager {
+public class Manager {
 	private List<AtomicAlarm> atomicAlarms;
 	private List<RecurringAlarm> recurringAlarms;
-	private AlarmChecker alarmChecker;
+	private Checker alarmChecker;
 	
-	public AlarmManager() {
+	public Manager() {
 		XmlParser xmlParser = new XmlParser();
 		this.atomicAlarms = xmlParser.getAtomicAlarms();
 		this.recurringAlarms = xmlParser.getRecurringAlarms();
-		this.alarmChecker = new AlarmChecker(this.atomicAlarms, this.recurringAlarms);
+		this.alarmChecker = new Checker(this.atomicAlarms, this.recurringAlarms);
 		startChecker();
 	}
 

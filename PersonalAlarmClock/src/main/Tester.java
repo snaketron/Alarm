@@ -1,11 +1,11 @@
 package main;
 
-import struct.management.AlarmManager;
+import struct.management.Manager;
 
 public class Tester {
 
 	public static void main(String[] args) {
-		new AlarmManager();
+		new Manager();
 	}
 
 }

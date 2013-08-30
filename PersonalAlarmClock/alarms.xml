@@ -4,8 +4,8 @@
 	<alarm id = "AtomicAlarm1" type = "Atomic">
 		<alive>true</alive>
 		<fireTime>
-			<date>20-08-2012</date>
-			<time>10:45:10</time>
+			<date>30-8-2013</date>
+			<time>16:02:10</time>
 		</fireTime>
 		<music>BadCompany</music>
 		<video>Storm</video>
@@ -14,7 +14,7 @@
 	<alarm id = "AtomicAlarm2" type = "Atomic">
 		<alive>true</alive>
 		<fireTime>
-			<date>20-08-2013</date>
+			<date>20-8-2013</date>
 			<time>22:45:10</time>
 		</fireTime>
 			<music>null</music>
