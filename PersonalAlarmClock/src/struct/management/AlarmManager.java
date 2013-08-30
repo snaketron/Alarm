@@ -1,5 +1,7 @@
 package struct.management;
 
+import io.XmlParser;
+
 import java.util.List;
 
 import struct.alarm.AtomicAlarm;
@@ -11,7 +13,9 @@ public class AlarmManager {
 	private AlarmChecker alarmChecker;
 	
 	public AlarmManager() {
-		//read and init
+		XmlParser xmlParser = new XmlParser();
+		this.atomicAlarms = xmlParser.getAtomicAlarms();
+		this.recurringAlarms = xmlParser.getRecurringAlarms();
 		this.alarmChecker = new AlarmChecker(this.atomicAlarms, this.recurringAlarms);
 		startChecker();
 	}

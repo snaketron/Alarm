@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<alarms>
+	<alarm id = "AtomicAlarm1" type = "Atomic">
+		<alive>true</alive>
+		<fireTime>
+			<date>20-08-2012</date>
+			<time>10:45:10</time>
+		</fireTime>
+		<music>BadCompany</music>
+		<video>Storm</video>
+	</alarm>
+	
+	<alarm id = "AtomicAlarm2" type = "Atomic">
+		<alive>true</alive>
+		<fireTime>
+			<date>20-08-2013</date>
+			<time>22:45:10</time>
+		</fireTime>
+			<music>null</music>
+			<video>null</video>
+	</alarm>
+
+	<alarm id = "RecurringAlarm1" type = "Recurring">
+		<alive>true</alive>
+		<fireTime>
+			<dayOfWeek>Monday</dayOfWeek>
+			<time>22:45:10</time>
+		</fireTime>
+			<music>Metallica</music>
+			<video>Metallica</video>
+	</alarm>	
+</alarms>
