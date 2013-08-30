@@ -25,6 +25,15 @@ public class Checker implements Runnable {
 	
 	@Override
 	public void run() {
+		if(this.validCheck) {
+			checkingState();
+		}
+		else {
+			waitingState();
+		}
+	}
+	
+	private void checkingState() {
 		while(this.validCheck) {
 			try {
 				Thread.sleep(ConstantVariables.CHECKING_PERIOD);
@@ -35,6 +44,19 @@ public class Checker implements Runnable {
 			checkAtomicAlarms();
 			checkRecurringAlarms();
 		}
+		waitingState();
+	}
+	
+	private void waitingState() {
+		while(!this.validCheck) {
+			try {
+				Thread.sleep(ConstantVariables.CHECKING_PERIOD);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			this.timeOfDay += ConstantVariables.CHECKING_PERIOD/1000;
+		}
+		checkingState();
 	}
 	
 	private void checkAtomicAlarms() {
@@ -58,8 +80,16 @@ public class Checker implements Runnable {
 			}
 		}
 	}
+
+	public boolean isValidCheck() {
+		return validCheck;
+	}
 	
-	public void stopChecker() {
+	public void stopChecking() {
 		this.validCheck = false;
+	}
+	
+	public void startChecking(List<AtomicAlarm> atomicAlarms, List<RecurringAlarm> recurringAlarms) {
+		this.validCheck = true;
 	}
 }

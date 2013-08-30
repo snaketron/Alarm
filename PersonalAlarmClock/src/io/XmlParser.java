@@ -13,7 +13,6 @@ import org.xml.sax.SAXException;
 import constants.ConstantVariables;
 import constants.XmlConstants;
 
-import struct.alarm.Alarm;
 import struct.alarm.AtomicAlarm;
 import struct.alarm.RecurringAlarm;
 
@@ -114,15 +113,35 @@ public class XmlParser {
 		return recurringAlarms;
 	}
 	
-	public void deleteAlarm(Alarm alarm) {
+	public void addAtomicAlarm(AtomicAlarm aa) {
+
+	}
+	
+	public void addRecurringAlarm(RecurringAlarm ra) {
 		
 	}
 	
-	public void addAlarm(Alarm alarm) {
+	public void removeAtomicAlarm(AtomicAlarm aa) {
 		
 	}
 	
-	public void editAlarm(Alarm alarm) {
+	public void removeRecurringAlarm(RecurringAlarm ra) {
+		
+	}
+	
+	public void modifyAtomicAlarm(AtomicAlarm aa) {
+		
+	}
+	
+	public void modifyRecurringAlarm(RecurringAlarm ra) {
+		
+	}
+	
+	public void cloneAtomicAlarm(AtomicAlarm aa) {
+		
+	}
+	
+	public void cloneRecurringAlarm(RecurringAlarm ra) {
 		
 	}
 }
