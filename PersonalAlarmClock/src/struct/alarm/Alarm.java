@@ -1,13 +1,16 @@
 package struct.alarm;
 
 public abstract class Alarm {
+	private String id;
 	private int fireTime;
 	private String music;
 	private String video;
 	private boolean alive;
 	
-	public Alarm(int fireTime, String music, String video, boolean alive) {
+	public Alarm(String id, int fireTime, String music, String video, 
+			boolean alive) {
 		super();
+		this.id = id;
 		this.fireTime = fireTime;
 		this.music = music;
 		this.video = video;
@@ -44,5 +47,13 @@ public abstract class Alarm {
 
 	public void setAlive(boolean alive) {
 		this.alive = alive;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

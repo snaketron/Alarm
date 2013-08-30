@@ -1,19 +1,19 @@
 package struct.alarm;
 
 public class RecurringAlarm extends Alarm {
-	private String timeOfDay;
+	private String dayOfWeek;
 	
-	public RecurringAlarm(int fireTime, String music, String video,
-			boolean alive, String timeOfDay) {
-		super(fireTime, music, video, alive);
-		this.timeOfDay = timeOfDay;
+	public RecurringAlarm(String id, int fireTime, String music, 
+			String video, boolean alive, String dayOfWeek) {
+		super(id, fireTime, music, video, alive);
+		this.dayOfWeek = dayOfWeek;
 	}
 
-	public String getTimeOfDay() {
-		return timeOfDay;
+	public String getDayOfWeek() {
+		return dayOfWeek;
 	}
 
-	public void setTimeOfDay(String timeOfDay) {
-		this.timeOfDay = timeOfDay;
+	public void setDayOfWeek(String dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
 	}
 }
