@@ -1,70 +1,34 @@
 package struct.alarm;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import struct.core.constants.CoreConst.AlarmType;
 
 public class Alarm {
-	private int id;
 	private String name;
 	private AlarmType alarmType;
 	private boolean alive;
 	private boolean enabled;
 	private String dayOfWeek;
-	private Date date;
-	private String dateString;
-	private String timeString;
+	private Timestamp timestamp;
 	private String audio;
 	private String video;
 	
 	public Alarm() {
-
+		
 	}
 	
-	public Alarm(int id, String name, AlarmType alarmType, boolean enabled, 
-			String dayOfWeek, Date date, String dateString, String timeString, 
-			String audio, String video) {
+	public Alarm(String name, AlarmType alarmType, boolean enabled, 
+			String dayOfWeek, Timestamp timestamp, String audio, 
+			String video) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.alarmType = alarmType;
 		this.enabled = enabled;
 		this.dayOfWeek = dayOfWeek;
-		this.date = date;
-		this.dateString = dateString;
-		this.timeString = timeString;
+		this.timestamp = timestamp;
 		this.audio = audio;
 		this.video = video;
-	}
-	
-	public void setCore(int id, String name, AlarmType alarmType, 
-			boolean alive, boolean enabled) {
-		this.id = id;
-		this.name = name;
-		this.alarmType = alarmType;
-		this.alive = alive;
-		this.enabled = enabled;
-	}
-	
-	public void setFire(String dayOfWeek, Date date, String dateString, 
-			String timeString) {
-		this.dayOfWeek = dayOfWeek;
-		this.date = date;
-		this.dateString = dateString;
-		this.timeString = timeString;
-	}
-	
-	public void setMedium(String audio, String video) {
-		this.audio = audio;
-		this.video = video;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -107,30 +71,14 @@ public class Alarm {
 		this.dayOfWeek = dayOfWeek;
 	}
 
-	public Date getDate() {
-		return date;
+	public Timestamp getTimestamp() {
+		return timestamp;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTimestamp(Timestamp Timestamp) {
+		this.timestamp = Timestamp;
 	}
 	
-	public String getDateString() {
-		return dateString;
-	}
-
-	public void setDateString(String dateString) {
-		this.dateString = dateString;
-	}
-
-	public String getTimeString() {
-		return timeString;
-	}
-
-	public void setTimeString(String timeString) {
-		this.timeString = timeString;
-	}
-
 	public String getAudio() {
 		return audio;
 	}
@@ -151,7 +99,17 @@ public class Alarm {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result
+				+ ((alarmType == null) ? 0 : alarmType.hashCode());
+		result = prime * result + (alive ? 1231 : 1237);
+		result = prime * result + ((audio == null) ? 0 : audio.hashCode());
+		result = prime * result
+				+ ((dayOfWeek == null) ? 0 : dayOfWeek.hashCode());
+		result = prime * result + (enabled ? 1231 : 1237);
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result
+				+ ((timestamp == null) ? 0 : timestamp.hashCode());
+		result = prime * result + ((video == null) ? 0 : video.hashCode());
 		return result;
 	}
 
@@ -164,8 +122,45 @@ public class Alarm {
 		if (getClass() != obj.getClass())
 			return false;
 		Alarm other = (Alarm) obj;
-		if (id != other.id)
+		if (alarmType != other.alarmType)
+			return false;
+		if (alive != other.alive)
+			return false;
+		if (audio == null) {
+			if (other.audio != null)
+				return false;
+		} else if (!audio.equals(other.audio))
+			return false;
+		if (dayOfWeek == null) {
+			if (other.dayOfWeek != null)
+				return false;
+		} else if (!dayOfWeek.equals(other.dayOfWeek))
+			return false;
+		if (enabled != other.enabled)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (timestamp == null) {
+			if (other.timestamp != null)
+				return false;
+		} else if (!timestamp.equals(other.timestamp))
+			return false;
+		if (video == null) {
+			if (other.video != null)
+				return false;
+		} else if (!video.equals(other.video))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Alarm [name=" + name + ", alarmType=" + alarmType + ", alive="
+				+ alive + ", enabled=" + enabled + ", dayOfWeek=" + dayOfWeek
+				+ ", timestamp=" + timestamp + ", audio=" + audio + ", video="
+				+ video + "]";
 	}
 }

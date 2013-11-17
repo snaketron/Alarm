@@ -1,46 +1,57 @@
 package struct.player;
 
-import java.io.BufferedInputStream;
+import jaco.mp3.player.MP3Player;
+
 import java.io.File;
-import java.io.FileInputStream;
 
-import javazoom.jl.player.Player;
+import struct.alarm.Alarm;
 
-public class AudioPlayer {
-    private Player player; 
-    private final String DOCS = "docs" + File.separator;
+public class AudioPlayer implements Runnable {
+	private MP3Player player;
+	private boolean playing = false;
 
     public AudioPlayer() {
-    	
+        this.player = new MP3Player();
+        this.player.setRepeat(true);
     }
-
-    public void stop() { 
-    	if(player != null) {
-    		player.close(); 
+    
+    public void startAlarm(Alarm alarm) {
+    	if(!this.player.getPlayList().contains(new File("docs/" + alarm.getAudio()))) {
+    		this.player.addToPlayList(new File("docs/" + alarm.getAudio()));
+    		this.playing = true;
     	}
     }
-
-    public void play(String audio) {
-        try {
-            FileInputStream fis = new FileInputStream(DOCS + audio);
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            player = new Player(bis);
-        }
-        catch (Exception e) {
-            System.out.println("Problem playing file " + DOCS + audio);
-            System.out.println(e);
-        }
-
-        new Thread() {
-            public void run() {
-                try { 
-                	player.play(); 
-                	System.out.println("playing started");
-                }
-                catch (Exception e) { 
-                	System.out.println(e); 
-                }
-            }
-        }.start();
+    
+    public void stopAlarm() {
+    	this.playing = false;
     }
+    
+    private void stopping() {
+    	if(!this.player.isStopped()) {
+    		this.player.stop();
+    	}
+    	if(!this.player.getPlayList().isEmpty()) {
+    		this.player.getPlayList().clear();
+    	}
+    	
+    	while(!playing) {
+    		
+    	}
+    	playing();
+    }
+    
+    private void playing() {
+    	this.player.play();
+    	while(playing) {
+    		if(player.isStopped()) {
+    			this.player.play();
+    		}
+    	}
+    	stopping();
+    }
+ 
+	@Override
+	public void run() {
+		stopping();
+	}
 }

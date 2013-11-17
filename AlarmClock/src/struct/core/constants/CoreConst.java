@@ -1,7 +1,7 @@
 package struct.core.constants;
 
 public interface CoreConst {
-	final int CHECK_PERIOD_MILLI = 10000;
+	final int CHECK_PERIOD_MILLI = 3000;
 	
 	enum AlarmType {
 		ATOMIC("atomic"), 

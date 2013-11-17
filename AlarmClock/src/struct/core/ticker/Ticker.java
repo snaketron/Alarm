@@ -8,17 +8,17 @@ public class Ticker implements Runnable {
 	private boolean alive;
 	protected EventListenerList listenerList = new EventListenerList();
 
-	public void addTickEventListener(TickEventListener listener) {
-		listenerList.add(TickEventListener.class, listener);
+	public void addTickListener(TickListener listener) {
+		listenerList.add(TickListener.class, listener);
 	}
 	  
-	public void removeTickEventListener(TickEventListener listener) {
-	    listenerList.remove(TickEventListener.class, listener);
+	public void removeTickListener(TickListener listener) {
+	    listenerList.remove(TickListener.class, listener);
 	}
 
 	private void fireTickEvent(TickEvent tickEvent) {
-		TickEventListener[] listeners = listenerList.getListeners(TickEventListener.class);
-	    for(TickEventListener listener : listeners) {
+		TickListener[] listeners = listenerList.getListeners(TickListener.class);
+	    for(TickListener listener : listeners) {
 	    	listener.tickOccurred(tickEvent);
 	    }
 	}
